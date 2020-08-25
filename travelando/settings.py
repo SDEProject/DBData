@@ -83,7 +83,7 @@ if os.environ.get('DB', "") == 'PSQL':
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': DB_URL[DB_URL.rindex('/')+1:],
-            'USER': DB_URL[DB_URL.index(':')],
+            'USER': DB_URL[:DB_URL.index(':')],
             'PASSWORD': DB_URL[DB_URL.index(':')+1:DB_URL.index('@')],
             'HOST': DB_URL[DB_URL.index('@')+1:DB_URL.rindex(':')],
             'PORT': DB_URL[DB_URL.rindex(':')+1:DB_URL.rindex('/')],
