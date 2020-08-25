@@ -75,13 +75,27 @@ WSGI_APPLICATION = 'travelando.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+if os.environ.get('DB', "") == 'PSQL':
+    DB_URL = os.environ.get('DATABASE_URL', "")
+    DB_URL = DB_URL[DB_URL.index('://') + 3:]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_URL[DB_URL.rindex('/')+1:],
+            'USER': DB_URL[DB_URL.index(':')],
+            'PASSWORD': DB_URL[DB_URL.index(':')+1:DB_URL.index('@')],
+            'HOST': DB_URL[DB_URL.index('@')+1:DB_URL.rindex(':')],
+            'PORT': DB_URL[DB_URL.rindex(':')+1:DB_URL.rindex('/')],
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
