@@ -25,7 +25,9 @@ class Result(models.Model):
     path_difficulty = models.CharField(max_length=100, null=True, blank=True)
     shop_enum = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=100, null=True, blank=True)
+    user_id = models.FloatField(null=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='results')
+
 
 
 class Search(models.Model):
@@ -48,3 +50,4 @@ class Search(models.Model):
     time_period = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=100, null=True, blank=True)
     ordinal = models.CharField(max_length=100, null=True, blank=True)
+    user_id = models.FloatField(null=True)
