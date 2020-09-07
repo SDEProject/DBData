@@ -14,7 +14,7 @@ class ResultViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Destr
     serializer_class = serializers.ResultSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['name', 'accommodation_type', 'start_hour', 'end_hour', 'lat_1', 'long_1', 'lat_2', 'long_2',
-                        'path_from', 'path_to', 'time', 'path_length', 'path_difficulty', 'shop_enum', 'stars', 'type']
+                        'path_from', 'path_to', 'time', 'path_length', 'path_difficulty', 'shop_enum', 'stars', 'type', 'user_id']
 
 class SearchViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin):
     queryset = models.Search.objects.all()
